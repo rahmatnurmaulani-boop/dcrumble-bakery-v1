@@ -1,4 +1,4 @@
-import halalLogo from "../../assets/logo-halal.png";
+import halalLogo from "../../assets/Logo-Halal.png";
 import { InstagramIcon, TiktokIcon, FacebookIcon } from "../icons/SocialIcons";
 
 export default function Footer() {
