@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import Button from "../ui/Button";
 
 export default function Header() {
@@ -7,11 +8,11 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "Produk", href: "#menu" },
-    { name: "Korporat", href: "#" },
-    { name: "Outlet Kami", href: "#" },
-    { name: "Tentang", href: "#kontak" },
+    { name: "Home", path: "/" },
+    { name: "Produk", path: "/produk" },
+    { name: "Korporat", path: "/korporat" },
+    { name: "Outlet Kami", path: "/outlet" },
+    { name: "Tentang", path: "/tentang" },
   ];
 
   useEffect(() => {
@@ -36,30 +37,30 @@ export default function Header() {
       }`}
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6">
-        {/* LOGO BRAND */}
-        <a
-          href="#"
+        {/* LOGO BRAND - MENGGUNAKAN LINK */}
+        <Link
+          to="/"
           className="font-extrabold text-base sm:text-lg text-rose-900 bg-white rounded-full px-4 py-1.5 shadow-md hover:bg-rose-50 transition-all"
         >
           D'<span className="font-bold text-rose-600">Crumble</span>
-        </a>
+        </Link>
 
-        {/* DESKTOP NAV */}
+        {/* DESKTOP NAV - MENGGUNAKAN LINK */}
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-semibold text-rose-100">
           {navLinks.map((link, index) => (
-            <a
+            <Link
               key={index}
-              href={link.href}
+              to={link.path}
               className="hover:text-white transition-colors"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* ACTION BUTTON (DESKTOP) */}
         <div className="hidden sm:block">
-          <a href="#menu">
+          <Link to="/produk">
             <Button
               variant="secondary"
               size="md"
@@ -67,7 +68,7 @@ export default function Header() {
             >
               Pesan Sekarang
             </Button>
-          </a>
+          </Link>
         </div>
 
         {/* MOBILE MENU TOGGLE */}
@@ -81,22 +82,22 @@ export default function Header() {
         </button>
       </div>
 
-      {/* MOBILE NAV DROPDOWN */}
+      {/* MOBILE NAV DROPDOWN - MENGGUNAKAN LINK */}
       {isOpen && (
         <div className="md:hidden bg-rose-900 border-t border-white/20 px-6 py-4 space-y-3 shadow-xl">
           {navLinks.map((link, index) => (
-            <a
+            <Link
               key={index}
-              href={link.href}
+              to={link.path}
               onClick={() => setIsOpen(false)}
               className="block font-semibold text-rose-100 hover:text-white transition-colors py-1"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
 
           <div className="pt-2">
-            <a href="#menu" onClick={() => setIsOpen(false)}>
+            <Link to="/produk" onClick={() => setIsOpen(false)}>
               <Button
                 variant="secondary"
                 size="md"
@@ -105,7 +106,7 @@ export default function Header() {
               >
                 Pesan Sekarang
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       )}
